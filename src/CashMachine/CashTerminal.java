@@ -1,3 +1,5 @@
+package CashMachine;
+
 import javafx.util.Pair;
 
 import java.io.BufferedReader;
@@ -49,6 +51,7 @@ public class CashTerminal {
         {
             System.out.println("Введите купюру:");
             int banknote = Integer.parseInt(br.readLine());
+
             System.out.println("Введите размен:");
             String[] inputCoins = br.readLine().split(" ");
             int[] coinsExchange = Arrays.stream(inputCoins).mapToInt(x -> Integer.parseInt(x)).toArray();
@@ -60,10 +63,11 @@ public class CashTerminal {
 
             List<List<Pair<Integer, Integer>>> exchangedBanknote = Exchange(banknote, 0, coinsExchange);
 
-            exchangedBanknote.stream().forEach(x->{
-                x.stream().forEach(y->System.out.print(Repeat(y.getKey().toString() + " ", y.getValue())));
+            exchangedBanknote.forEach(x->{
+                x.forEach(y->System.out.print(Repeat(y.getKey().toString() + " ", y.getValue())));
                 System.out.println();
             });
+            System.out.println("Количество комбинаций: " + exchangedBanknote.size());
         }
         catch(Exception ex){
 
