@@ -41,14 +41,13 @@ public class CashTerminal {
 
     }
 
-    public boolean Validator(int[] coins){
-        return Arrays.stream(coins).allMatch(x-> x>0);
+    public boolean Validator(int[] coins) {
+        return Arrays.stream(coins).allMatch(x -> x > 0);
     }
 
-    public void Start(){
+    public void Start() {
 
-        try(BufferedReader br = new BufferedReader (new InputStreamReader(System.in)))
-        {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
             System.out.println("Введите купюру:");
             int banknote = Integer.parseInt(br.readLine());
 
@@ -56,25 +55,25 @@ public class CashTerminal {
             String[] inputCoins = br.readLine().split(" ");
             int[] coinsExchange = Arrays.stream(inputCoins).mapToInt(x -> Integer.parseInt(x)).toArray();
 
-            if(!Validator(coinsExchange) || ! Validator(new int []{banknote})){
+            if (!Validator(coinsExchange) || !Validator(new int[]{banknote})) {
                 System.out.println("Купюры меьше 0:");
                 return;
             }
 
             List<List<Pair<Integer, Integer>>> exchangedBanknote = Exchange(banknote, 0, coinsExchange);
 
-            exchangedBanknote.forEach(x->{
-                x.forEach(y->System.out.print(Repeat(y.getKey().toString() + " ", y.getValue())));
+            exchangedBanknote.forEach(x -> {
+                x.forEach(y -> System.out.print(Repeat(y.getKey().toString() + " ", y.getValue())));
                 System.out.println();
             });
             System.out.println("Количество комбинаций: " + exchangedBanknote.size());
-        }
-        catch(Exception ex){
+        } catch (Exception ex) {
 
             System.out.println("Скорее всего вы ввели неверные купюры");
         }
     }
-    private String Repeat(String string, int count){
+
+    private String Repeat(String string, int count) {
         return new String(new char[count]).replace("\0", string);
     }
 }

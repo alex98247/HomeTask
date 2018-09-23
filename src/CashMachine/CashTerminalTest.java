@@ -17,17 +17,17 @@ public class CashTerminalTest {
         List<Pair<Integer, Integer>> list2 = new LinkedList<>();
         List<Pair<Integer, Integer>> list3 = new LinkedList<>();
         List<Pair<Integer, Integer>> list4 = new LinkedList<>();
-        list1.add(new Pair<>(1,4));
+        list1.add(new Pair<>(1, 4));
 
-        list2.add(new Pair<>(2,1));
-        list2.add(new Pair<>(1,2));
+        list2.add(new Pair<>(2, 1));
+        list2.add(new Pair<>(1, 2));
 
-        list3.add(new Pair<>(3,1));
-        list3.add(new Pair<>(2,0));
-        list3.add(new Pair<>(1,1));
+        list3.add(new Pair<>(3, 1));
+        list3.add(new Pair<>(2, 0));
+        list3.add(new Pair<>(1, 1));
 
-        list4.add(new Pair<>(2,2));
-        list4.add(new Pair<>(1,0));
+        list4.add(new Pair<>(2, 2));
+        list4.add(new Pair<>(1, 0));
 
         list.add(list1);
         list.add(list2);
