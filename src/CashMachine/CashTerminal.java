@@ -41,7 +41,7 @@ public class CashTerminal {
 
     }
 
-    public boolean validator(int[] coins) {
+    public boolean validate(int[] coins) {
         return Arrays.stream(coins).allMatch(x -> x > 0);
     }
 
@@ -55,8 +55,8 @@ public class CashTerminal {
             String[] inputCoins = br.readLine().split(" ");
             int[] coinsExchange = Arrays.stream(inputCoins).mapToInt(x -> Integer.parseInt(x)).distinct().toArray();
 
-            if (!validator(coinsExchange) || !validator(new int[]{banknote})) {
-                System.out.println("Купюры меьше 0:");
+            if (!validate(coinsExchange) || !validate(new int[]{banknote})) {
+                System.out.println("Купюры меьше 0");
                 return;
             }
 
@@ -69,7 +69,7 @@ public class CashTerminal {
             System.out.println("Количество комбинаций: " + exchangedBanknote.size());
         } catch (Exception ex) {
 
-            System.out.println("Скорее всего вы ввели неверные купюры");
+            System.out.println("Вы ввели неверные купюры");
         }
     }
 
