@@ -10,23 +10,23 @@ public class Stack<T> {
         list = new ListCollection<T>();
     }
 
-    public void Push(T element) {
+    public void push(T element) {
         list.add(element);
     }
 
-    public T Pop() {
-        if(list.isEmpty()) throw  new EmptyStackException();
+    public T pop() {
+        if (list.isEmpty()) throw new EmptyStackException();
         T element = list.get(list.size() - 1);
         list.remove(list.size() - 1);
         return element;
     }
 
-    public T Peek() {
-        if(list.isEmpty()) throw  new EmptyStackException();
+    public T peek() {
+        if (list.isEmpty()) throw new EmptyStackException();
         return list.get(list.size() - 1);
     }
 
-    public boolean IsEmpty() {
+    public boolean isEmpty() {
         return list.size() == 0;
     }
 }

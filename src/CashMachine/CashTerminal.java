@@ -10,7 +10,7 @@ import java.util.List;
 
 public class CashTerminal {
 
-    public List<List<Pair<Integer, Integer>>> Exchange(int banknote, int index, int[] array) {
+    public List<List<Pair<Integer, Integer>>> exchange(int banknote, int index, int[] array) {
 
         List<List<Pair<Integer, Integer>>> list = new LinkedList<>();
 
@@ -26,7 +26,7 @@ public class CashTerminal {
 
             if (index + 1 < array.length) {
 
-                List<List<Pair<Integer, Integer>>> exchange = Exchange(banknote - i * array[index], index + 1, array);
+                List<List<Pair<Integer, Integer>>> exchange = exchange(banknote - i * array[index], index + 1, array);
                 if (exchange.size() != 0) {
                     for (List<Pair<Integer, Integer>> l : exchange) {
                         l.add(new Pair<>(array[index], i));
@@ -41,11 +41,11 @@ public class CashTerminal {
 
     }
 
-    public boolean Validator(int[] coins) {
+    public boolean validator(int[] coins) {
         return Arrays.stream(coins).allMatch(x -> x > 0);
     }
 
-    public void Start() {
+    public void start() {
 
         try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
             System.out.println("Введите купюру:");
@@ -53,17 +53,17 @@ public class CashTerminal {
 
             System.out.println("Введите размен:");
             String[] inputCoins = br.readLine().split(" ");
-            int[] coinsExchange = Arrays.stream(inputCoins).mapToInt(x -> Integer.parseInt(x)).toArray();
+            int[] coinsExchange = Arrays.stream(inputCoins).mapToInt(x -> Integer.parseInt(x)).distinct().toArray();
 
-            if (!Validator(coinsExchange) || !Validator(new int[]{banknote})) {
+            if (!validator(coinsExchange) || !validator(new int[]{banknote})) {
                 System.out.println("Купюры меьше 0:");
                 return;
             }
 
-            List<List<Pair<Integer, Integer>>> exchangedBanknote = Exchange(banknote, 0, coinsExchange);
+            List<List<Pair<Integer, Integer>>> exchangedBanknote = exchange(banknote, 0, coinsExchange);
 
             exchangedBanknote.forEach(x -> {
-                x.forEach(y -> System.out.print(Repeat(y.getKey().toString() + " ", y.getValue())));
+                x.forEach(y -> System.out.print(repeat(y.getKey().toString() + " ", y.getValue())));
                 System.out.println();
             });
             System.out.println("Количество комбинаций: " + exchangedBanknote.size());
@@ -73,7 +73,7 @@ public class CashTerminal {
         }
     }
 
-    private String Repeat(String string, int count) {
+    private String repeat(String string, int count) {
         return new String(new char[count]).replace("\0", string);
     }
 }

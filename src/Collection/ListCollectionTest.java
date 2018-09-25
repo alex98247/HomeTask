@@ -3,11 +3,12 @@ package Collection;
 import org.junit.Assert;
 import org.junit.Test;
 
+
 public class ListCollectionTest {
     ListCollection<Integer> list;
 
     @Test
-    public void AddTest() {
+    public void addTest() {
         list = new ListCollection<Integer>();
 
         list.add(11);
@@ -19,7 +20,7 @@ public class ListCollectionTest {
     }
 
     @Test
-    public void RemoveTest() {
+    public void removeTest() {
         list = new ListCollection<Integer>();
 
         list.add(11);
@@ -35,7 +36,7 @@ public class ListCollectionTest {
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
-    public void RemoveExceptionTest() {
+    public void removeExceptionTest() {
         list = new ListCollection<Integer>();
 
         list.add(11);
@@ -47,7 +48,7 @@ public class ListCollectionTest {
     }
 
     @Test
-    public void ContainsTest() {
+    public void containsTest() {
         list = new ListCollection<Integer>();
 
         list.add(11);
@@ -59,7 +60,7 @@ public class ListCollectionTest {
     }
 
     @Test
-    public void IsEmptyTest() {
+    public void isEmptyTest() {
         list = new ListCollection<Integer>();
         ListCollection<Integer> list2 = new ListCollection<Integer>();
         ListCollection<Integer> list1 = new ListCollection<Integer>(20);
@@ -78,7 +79,7 @@ public class ListCollectionTest {
     }
 
     @Test
-    public void GetTest() {
+    public void getTest() {
         list = new ListCollection<Integer>();
 
         list.add(11);
@@ -89,7 +90,7 @@ public class ListCollectionTest {
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
-    public void GetExceptionTest() {
+    public void getExceptionTest() {
         list = new ListCollection<Integer>();
 
         list.add(11);

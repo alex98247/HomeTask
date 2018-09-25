@@ -11,9 +11,9 @@ public class ListCollection<T> implements List<T>, RandomAccess, Cloneable, java
     public ListCollection(int initialCapacity) {
 
         if (initialCapacity > 0) {
-            ArrayValue = CreateArray(initialCapacity);
+            ArrayValue = createArray(initialCapacity);
         } else if (initialCapacity == 0) {
-            ArrayValue = CreateArray(this.Capacity);
+            ArrayValue = createArray(this.Capacity);
         } else {
             throw new IllegalArgumentException("Illegal Capacity: " +
                     initialCapacity);
@@ -21,13 +21,13 @@ public class ListCollection<T> implements List<T>, RandomAccess, Cloneable, java
     }
 
     public ListCollection() {
-        ArrayValue = CreateArray(this.Capacity);
+        ArrayValue = createArray(this.Capacity);
     }
 
-    private void CheckRange(int index, boolean canExpand) {
+    private void checkRange(int index, boolean canExpand) {
         if (Size == Capacity && canExpand) {
-            Capacity+=10;
-            Object[] newArray = CreateArray(Capacity);
+            Capacity += 10;
+            Object[] newArray = createArray(Capacity);
             System.arraycopy(ArrayValue, 0, newArray, 0, size());
             ArrayValue = newArray;
             return;
@@ -37,7 +37,7 @@ public class ListCollection<T> implements List<T>, RandomAccess, Cloneable, java
         }
     }
 
-    private Object[] CreateArray(int initialCapacity) {
+    private Object[] createArray(int initialCapacity) {
         return new Object[initialCapacity];
     }
 
@@ -73,7 +73,7 @@ public class ListCollection<T> implements List<T>, RandomAccess, Cloneable, java
 
     @Override
     public boolean add(T t) {
-        CheckRange(Size, true);
+        checkRange(Size, true);
         ArrayValue[Size] = t;
         Size++;
         return false;
@@ -116,7 +116,7 @@ public class ListCollection<T> implements List<T>, RandomAccess, Cloneable, java
 
     @Override
     public T get(int index) {
-        CheckRange(index, false);
+        checkRange(index, false);
         return (T) ArrayValue[index];
     }
 
@@ -127,7 +127,7 @@ public class ListCollection<T> implements List<T>, RandomAccess, Cloneable, java
 
     @Override
     public void add(int index, T element) {
-        CheckRange(index, true);
+        checkRange(index, true);
         System.arraycopy(ArrayValue, index, ArrayValue, index + 1,
                 size() - index);
         ArrayValue[index] = element;
@@ -136,7 +136,7 @@ public class ListCollection<T> implements List<T>, RandomAccess, Cloneable, java
 
     @Override
     public T remove(int index) {
-        CheckRange(index, false);
+        checkRange(index, false);
         T oldValue = (T) ArrayValue[index];
         int numMoved = size() - index - 1;
         if (numMoved > 0)

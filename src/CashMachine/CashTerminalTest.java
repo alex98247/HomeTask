@@ -34,7 +34,7 @@ public class CashTerminalTest {
         list.add(list3);
         list.add(list4);
 
-        List<List<Pair<Integer, Integer>>> exchange = cashTerminal.Exchange(4, 0, new int[]{1, 2, 3});
+        List<List<Pair<Integer, Integer>>> exchange = cashTerminal.exchange(4, 0, new int[]{1, 2, 3});
 
         Assert.assertArrayEquals(exchange.toArray(), list.toArray());
     }
@@ -43,7 +43,7 @@ public class CashTerminalTest {
     public void ExchangeErrorTest() {
         CashTerminal cashTerminal = new CashTerminal();
 
-        List<List<Pair<Integer, Integer>>> exchange = cashTerminal.Exchange(4, 0, new int[]{5, 3});
+        List<List<Pair<Integer, Integer>>> exchange = cashTerminal.exchange(4, 0, new int[]{5, 3});
 
         Assert.assertEquals(exchange, new LinkedList<>());
     }

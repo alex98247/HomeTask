@@ -6,45 +6,45 @@ import org.junit.Test;
 public class StackTest {
 
     @Test
-    public void PushTest(){
+    public void pushTest() {
         Stack<Integer> stack = new Stack<>();
-        stack.Push(1);
-        stack.Push(2);
-        stack.Push(3);
-        Integer element = stack.Peek();
-        Assert.assertEquals(3, element*1);
+        stack.push(1);
+        stack.push(2);
+        stack.push(3);
+        Integer element = stack.peek();
+        Assert.assertEquals(3, element * 1);
     }
 
     @Test
-    public void PopTest(){
+    public void popTest() {
         Stack<Integer> stack = new Stack<>();
-        stack.Push(1);
-        stack.Push(2);
-        stack.Push(3);
-        Integer element1 = stack.Pop();
-        Integer element2 = stack.Pop();
-        Assert.assertEquals(3, element1*1);
-        Assert.assertEquals(2, element2*1);
+        stack.push(1);
+        stack.push(2);
+        stack.push(3);
+        Integer element1 = stack.pop();
+        Integer element2 = stack.pop();
+        Assert.assertEquals(3, element1 * 1);
+        Assert.assertEquals(2, element2 * 1);
     }
 
     @Test
-    public void PeekTest(){
+    public void peekTest() {
         Stack<Integer> stack = new Stack<>();
-        stack.Push(1);
-        stack.Push(2);
-        stack.Push(3);
-        Integer element1 = stack.Peek();
-        Integer element2 = stack.Peek();
-        Assert.assertEquals(3, element1*1);
-        Assert.assertEquals(3, element2*1);
+        stack.push(1);
+        stack.push(2);
+        stack.push(3);
+        Integer element1 = stack.peek();
+        Integer element2 = stack.peek();
+        Assert.assertEquals(3, element1 * 1);
+        Assert.assertEquals(3, element2 * 1);
     }
 
     @Test
-    public void isEmptyTest(){
+    public void isEmptyTest() {
         Stack<Integer> stack = new Stack<>();
         Stack<Integer> stack1 = new Stack<>();
-        stack.Push(1);
-        Assert.assertEquals(stack.IsEmpty(), false);
-        Assert.assertEquals(stack1.IsEmpty(), true);
+        stack.push(1);
+        Assert.assertEquals(stack.isEmpty(), false);
+        Assert.assertEquals(stack1.isEmpty(), true);
     }
 }
