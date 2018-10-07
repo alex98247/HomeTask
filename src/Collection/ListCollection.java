@@ -1,39 +1,39 @@
 package Collection;
 
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
 import java.util.*;
 
-public class ListCollection<T> implements List<T>, RandomAccess, Cloneable, java.io.Serializable {
+public class ListCollection<T> implements List<T> {
 
-    private int Capacity = 10;
-    private Object[] ArrayValue;
-    private int Size = 0;
+    private int capacity = 10;
+    private Object[] arrayValue;
+    private int size = 0;
 
     public ListCollection(int initialCapacity) {
 
         if (initialCapacity > 0) {
-            ArrayValue = createArray(initialCapacity);
-        } else if (initialCapacity == 0) {
-            ArrayValue = createArray(this.Capacity);
+            arrayValue = createArray(initialCapacity);
         } else {
-            throw new IllegalArgumentException("Illegal Capacity: " +
+            throw new IllegalArgumentException("Illegal capacity: " +
                     initialCapacity);
         }
     }
 
     public ListCollection() {
-        ArrayValue = createArray(this.Capacity);
+        arrayValue = createArray(this.capacity);
     }
 
     private void checkRange(int index, boolean canExpand) {
-        if (Size == Capacity && canExpand) {
-            Capacity += 10;
-            Object[] newArray = createArray(Capacity);
-            System.arraycopy(ArrayValue, 0, newArray, 0, size());
-            ArrayValue = newArray;
+        if (size == capacity && canExpand) {
+            capacity += 10;
+            Object[] newArray = createArray(capacity);
+            System.arraycopy(arrayValue, 0, newArray, 0, size());
+            arrayValue = newArray;
             return;
         }
-        if (index > Size || index < 0) {
-            throw new IndexOutOfBoundsException();
+        if (index > size || index < 0) {
+            throw new IndexOutOfBoundsException("Index is out of range: " + index);
         }
     }
 
@@ -43,12 +43,12 @@ public class ListCollection<T> implements List<T>, RandomAccess, Cloneable, java
 
     @Override
     public int size() {
-        return Size;
+        return size;
     }
 
     @Override
     public boolean isEmpty() {
-        return size() == 0;
+        return size == 0;
     }
 
     @Override
@@ -57,92 +57,42 @@ public class ListCollection<T> implements List<T>, RandomAccess, Cloneable, java
     }
 
     @Override
-    public Iterator<T> iterator() {
-        return null;
-    }
-
-    @Override
-    public Object[] toArray() {
-        return new Object[0];
-    }
-
-    @Override
-    public <T1> T1[] toArray(T1[] a) {
-        return null;
-    }
-
-    @Override
     public boolean add(T t) {
-        checkRange(Size, true);
-        ArrayValue[Size] = t;
-        Size++;
+        checkRange(size, true);
+        arrayValue[size] = t;
+        size++;
         return false;
-    }
-
-    @Override
-    public boolean remove(Object o) {
-        return false;
-    }
-
-    @Override
-    public boolean containsAll(Collection<?> c) {
-        return false;
-    }
-
-    @Override
-    public boolean addAll(Collection<? extends T> c) {
-        return false;
-    }
-
-    @Override
-    public boolean addAll(int index, Collection<? extends T> c) {
-        return false;
-    }
-
-    @Override
-    public boolean removeAll(Collection<?> c) {
-        return false;
-    }
-
-    @Override
-    public boolean retainAll(Collection<?> c) {
-        return false;
-    }
-
-    @Override
-    public void clear() {
-
     }
 
     @Override
     public T get(int index) {
         checkRange(index, false);
-        return (T) ArrayValue[index];
+        return (T) arrayValue[index];
     }
 
     @Override
     public T set(int index, T element) {
-        return null;
+        throw new NotImplementedException();
     }
 
     @Override
     public void add(int index, T element) {
         checkRange(index, true);
-        System.arraycopy(ArrayValue, index, ArrayValue, index + 1,
+        System.arraycopy(arrayValue, index, arrayValue, index + 1,
                 size() - index);
-        ArrayValue[index] = element;
-        Size++;
+        arrayValue[index] = element;
+        size++;
     }
 
     @Override
     public T remove(int index) {
         checkRange(index, false);
-        T oldValue = (T) ArrayValue[index];
+        T oldValue = (T) arrayValue[index];
         int numMoved = size() - index - 1;
         if (numMoved > 0)
-            System.arraycopy(ArrayValue, index + 1, ArrayValue, index,
+            System.arraycopy(arrayValue, index + 1, arrayValue, index,
                     numMoved);
-        Size--;
+        size--;
         return oldValue;
     }
 
@@ -150,11 +100,11 @@ public class ListCollection<T> implements List<T>, RandomAccess, Cloneable, java
     public int indexOf(Object o) {
         if (o == null) {
             for (int i = 0; i < size(); i++)
-                if (ArrayValue[i] == null)
+                if (arrayValue[i] == null)
                     return i;
         } else {
             for (int i = 0; i < size(); i++)
-                if (o.equals(ArrayValue[i]))
+                if (o.equals(arrayValue[i]))
                     return i;
         }
         return -1;
@@ -162,21 +112,72 @@ public class ListCollection<T> implements List<T>, RandomAccess, Cloneable, java
 
     @Override
     public int lastIndexOf(Object o) {
-        return 0;
+        throw new NotImplementedException();
     }
 
     @Override
     public ListIterator<T> listIterator() {
-        return null;
+        throw new NotImplementedException();
     }
 
     @Override
     public ListIterator<T> listIterator(int index) {
-        return null;
+        throw new NotImplementedException();
     }
 
     @Override
     public List<T> subList(int fromIndex, int toIndex) {
-        return null;
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public Object[] toArray() {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public <T1> T1[] toArray(T1[] a) {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public boolean remove(Object o) {
+
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public boolean containsAll(Collection<?> c) {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public boolean addAll(Collection<? extends T> c) {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public boolean addAll(int index, Collection<? extends T> c) {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public boolean removeAll(Collection<?> c) {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public boolean retainAll(Collection<?> c) {
+        throw new NotImplementedException();
+    }
+
+    @Override
+    public void clear() {
+        throw new NotImplementedException();
     }
 }
