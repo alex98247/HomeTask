@@ -9,7 +9,7 @@ import java.util.List;
 
 public class CashTerminalTest {
     @Test
-    public void ExchangeSuccessTest() {
+    public void exchangeSuccessTest() {
         CashTerminal cashTerminal = new CashTerminal();
         List<List<Pair<Integer, Integer>>> list = new LinkedList<>();
 
@@ -40,7 +40,7 @@ public class CashTerminalTest {
     }
 
     @Test
-    public void ExchangeErrorTest() {
+    public void exchangeErrorTest() {
         CashTerminal cashTerminal = new CashTerminal();
 
         List<List<Pair<Integer, Integer>>> exchange = cashTerminal.exchange(4, 0, new int[]{5, 3});
