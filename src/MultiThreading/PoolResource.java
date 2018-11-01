@@ -1,5 +1,6 @@
 package MultiThreading;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
@@ -7,10 +8,10 @@ import java.util.Stack;
 public class PoolResource<T> {
     private Stack<T> resource;
 
-    public PoolResource(T[] res) {
+    public PoolResource(T[] resource) {
 
         this.resource = new Stack<>();
-        for (T u : res) this.resource.push(u);
+        Arrays.stream(resource).forEach(x -> this.resource.push(x));
     }
 
     public synchronized List<T> getResource(int count) {
