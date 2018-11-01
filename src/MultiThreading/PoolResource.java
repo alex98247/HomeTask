@@ -16,16 +16,20 @@ public class PoolResource<T> {
 
     public synchronized List<T> getResource(int count) {
         List<T> resource = new LinkedList<>();
-        while (true) {
-            if (this.resource.size() >= count) {
-                for (int i = 0; i < count; i++) resource.add(this.resource.pop());
-                break;
+        while (this.resource.size() < count) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
+        for (int i = 0; i < count; i++) resource.add(this.resource.pop());
+        
         return resource;
     }
 
-    public void freeResources(List<T> freeResource) {
+    public synchronized void freeResources(List<T> freeResource) {
         for (T u : freeResource) resource.push(u);
+        notify();
     }
 }
