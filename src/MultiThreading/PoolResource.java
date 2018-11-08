@@ -30,6 +30,6 @@ public class PoolResource<T> {
 
     public synchronized void freeResources(List<T> freeResource) {
         for (T u : freeResource) resource.push(u);
-        notify();
+        notifyAll();
     }
 }
